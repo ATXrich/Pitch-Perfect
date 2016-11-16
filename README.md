@@ -1,8 +1,12 @@
 # Pitch-Perfect
-iPhone (Swift 2.x)
+iPhone App (iOS 9.0, Swift 2.x)
 
-Project Overview
+Pitch Perfect is Project 1 towards the [Udacity iOS Developer Nanodegree](https://www.udacity.com/)
 
-Pitch Perfect is an iPhone app allowing users to record their voice and will then modulate the recorded audio to sound like a Chipmunk or Darth Vader. This app will also let the user speed up or slow down the rate of playback.
+# Overview
 
-Project built to learn MVC design pattern and utilizes the AVFoundation classes for recording and playing back audio from an iPhone.
+Pitch Perfect is an iPhone app that allows users to record their voice and then modulates the recorded audio to sound like a Chipmunk or Darth Vader. The app also lets the user speed up or slow down the rate of playback.
+
+# Details
+
+Upon installation of the app, press the record button, say your favorite quote, press stop button when you are finished after which you get a view where you can choose your play with different modulations of the recorded audio.
