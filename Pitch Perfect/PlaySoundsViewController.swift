@@ -27,15 +27,15 @@ class PlaySoundsViewController: UIViewController {
         super.viewDidLoad()
         
         audioEngine = AVAudioEngine()
-        audioFile = try! AVAudioFile(forReading: receivedAudio.filePathUrl)
+        audioFile = try! AVAudioFile(forReading: receivedAudio.filePathUrl as URL)
         
-        audioPlayer = try! AVAudioPlayer(contentsOfURL: receivedAudio.filePathUrl)
+        audioPlayer = try! AVAudioPlayer(contentsOf: receivedAudio.filePathUrl as URL)
         audioPlayer.enableRate = true
         
     }
     
-    override func viewWillAppear(animated: Bool) {
-        stopButton.hidden = true
+    override func viewWillAppear(_ animated: Bool) {
+        stopButton.isHidden = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,14 +44,14 @@ class PlaySoundsViewController: UIViewController {
     }
     
 
-    @IBAction func playbackRecording(sender: UIButton) {
+    @IBAction func playbackRecording(_ sender: UIButton) {
         resetPlayer()
         audioPlayer.currentTime = 0
-        stopButton.hidden = false
-        slowButton.enabled = false
-        fastButton.enabled = false
-        chipmunkButton.enabled = false
-        darthVaderButton.enabled = false
+        stopButton.isHidden = false
+        slowButton.isEnabled = false
+        fastButton.isEnabled = false
+        chipmunkButton.isEnabled = false
+        darthVaderButton.isEnabled = false
         
         if let playback = Playback(rawValue: sender.tag) {
             switch (playback) {
@@ -65,39 +65,39 @@ class PlaySoundsViewController: UIViewController {
         
     }
 
-    @IBAction func stopPlayback(sender: UIButton) {
+    @IBAction func stopPlayback(_ sender: UIButton) {
         
         resetPlayer()
         
-        stopButton.hidden = true
-        slowButton.enabled = true
-        fastButton.enabled = true
-        chipmunkButton.enabled = true
-        darthVaderButton.enabled = true
+        stopButton.isHidden = true
+        slowButton.isEnabled = true
+        fastButton.isEnabled = true
+        chipmunkButton.isEnabled = true
+        darthVaderButton.isEnabled = true
     }
     
-    func playAudioWithVariableSpeed(speed: Float){
+    func playAudioWithVariableSpeed(_ speed: Float){
         resetPlayer()
         audioPlayer.rate = speed
         audioPlayer.play()
         
     }
     
-    func playAudioWithVariablePitch(pitch: Float){
+    func playAudioWithVariablePitch(_ pitch: Float){
         
         resetPlayer()
         
         let audioPlayerNode = AVAudioPlayerNode()
-        audioEngine.attachNode(audioPlayerNode)
+        audioEngine.attach(audioPlayerNode)
         
         let changePitchEffect = AVAudioUnitTimePitch()
         changePitchEffect.pitch = pitch
-        audioEngine.attachNode(changePitchEffect)
+        audioEngine.attach(changePitchEffect)
         
         audioEngine.connect(audioPlayerNode, to: changePitchEffect, format: nil)
         audioEngine.connect(changePitchEffect, to: audioEngine.outputNode, format: nil)
         
-        audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
+        audioPlayerNode.scheduleFile(audioFile, at: nil, completionHandler: nil)
         try! audioEngine.start()
         
         audioPlayerNode.play()
