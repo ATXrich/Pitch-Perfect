@@ -1,5 +1,5 @@
 # Pitch-Perfect
-iPhone App (iOS 9.0, Swift 2.x)
+iPhone App (iOS 10.1, Swift 3.0)
 
 Pitch Perfect is Project 1 towards the [Udacity iOS Developer Nanodegree](https://www.udacity.com/)
 
